@@ -9,6 +9,20 @@ import { ignoredExtensions, readIgnoreRules } from './utils/ignores';
 // wasmFolder("https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist");
 
 export async function activate(context: vscode.ExtensionContext) {
+
+	const crabvizScheme = "crabviz";
+	const crabvizProvider = new class implements vscode.TextDocumentContentProvider {
+		// emitter and its event
+		onDidChangeEmitter = new vscode.EventEmitter<vscode.Uri>();
+		onDidChange = this.onDidChangeEmitter.event;
+
+		provideTextDocumentContent(uri: vscode.Uri, token: vscode.CancellationToken): string {
+			return uri.path;
+		}
+	};
+
+	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(crabvizScheme, crabvizProvider));
+
 	let disposable = vscode.commands.registerCommand('crabviz.generateCallGraph', async (contextSelection: vscode.Uri, allSelections: vscode.Uri[]) => {
 		let cancelled = false;
 

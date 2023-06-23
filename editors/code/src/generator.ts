@@ -113,6 +113,10 @@ export class Generator {
 
     const dot = inner.generate_dot_source();
 
+    const uri = vscode.Uri.parse('crabviz:' + dot);
+    const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
+    await vscode.window.showTextDocument(doc, { preview: false });
+
     return graphviz.dot(dot);
   }
 }

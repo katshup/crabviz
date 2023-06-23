@@ -1,9 +1,10 @@
 mod go;
 mod java;
 mod rust;
+mod c;
 
 use {
-    self::{go::Go, java::Java, rust::Rust},
+    self::{go::Go, java::Java, rust::Rust, c::C},
     crate::{
         generator::FileOutline,
         graph::{Cell, Style, TableNode},
@@ -90,6 +91,10 @@ pub(crate) fn language_handler(ext: &str) -> Box<dyn Language + Sync + Send> {
         "go" => Box::new(Go),
         "java" => Box::new(Java),
         "rs" => Box::new(Rust),
+        "c"
+        | "cpp"
+        | "h"
+        | "hpp" => Box::new(C),
         _ => Box::new(DefaultLang {}),
     }
 }
