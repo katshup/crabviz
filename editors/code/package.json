@@ -28,6 +28,10 @@
       {
         "command": "crabviz.generateCallGraph",
         "title": "Crabviz: Generate Call Graph"
+      },
+      {
+        "command": "crabviz.openCallGraph",
+        "title": "Crabviz: Open Call Graph"
       }
     ],
     "menus": {
@@ -35,6 +39,11 @@
         {
           "command": "crabviz.generateCallGraph",
           "when": "never"
+        },
+        {
+          "command": "crabviz.openCallGraph",
+          "title": "Open Call Graph",
+          "category": "Crabviz"
         }
       ],
       "explorer/context": [

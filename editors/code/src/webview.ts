@@ -36,7 +36,6 @@ function renderContent(context: vscode.ExtensionContext, webview: vscode.Webview
     <title>crabviz</title>
 </head>
 <body>
-<body>
     ${svg}
 		<script nonce="${nonce}" src="${preprossessJsUri}"></script>
 </body>
